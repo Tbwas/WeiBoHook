@@ -39,6 +39,9 @@ static NSInteger const kTextViewIdentifier = 201707190343;
     textView.tag = kTextViewIdentifier;
     textView.text = [self xd_printCurrentViewControllerNameAndIvar];
     [[UIApplication sharedApplication].keyWindow addSubview:textView];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xd_clickedToDismissTextView:)];
+    [textView addGestureRecognizer:tap];
 }
 
 
@@ -58,6 +61,16 @@ static NSInteger const kTextViewIdentifier = 201707190343;
     }
     return text;
 }
+
+- (void)xd_clickedToDismissTextView:(UITapGestureRecognizer *)tap {
+    [[UIApplication sharedApplication].keyWindow.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[UITextView class]] && obj.tag == kTextViewIdentifier) {
+            [obj removeFromSuperview];
+            obj = nil;
+        }
+    }];
+}
+
 
 #pragma mark - Method Swizzling
 

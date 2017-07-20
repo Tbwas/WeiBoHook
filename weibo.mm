@@ -21,7 +21,6 @@
 //   4. register hook using CHHook() in CHConstructor
 //   5. (optionally) call old method using CHSuper()
 
-CHDeclareClass(NSObject);
 CHDeclareClass(WBCustomSource);
 CHDeclareClass(WBMyWeiboSourceViewController);
 
